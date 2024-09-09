@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拍照功能</title>
+    <style>
+        #photo {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>拍照功能示例</h1>
+    <!-- 文件输入框，允许用户选择图片或使用摄像头拍照 -->
+    <input type="file" id="cameraInput" accept="image/*" capture="environment">
+    <!-- 显示拍摄的图像 -->
+    <img id="photo" src="" alt="拍照结果">
+
+    <!-- JavaScript 用于处理图像 -->
+    <script>
+        document.getElementById('cameraInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('photo').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
